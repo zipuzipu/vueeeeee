@@ -1,0 +1,49 @@
+<meta charset="utf-8">
+<head>
+	<title>VUEJS</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container" id="app">
+	<div class="card">
+		<h1>Форма для добавления товара</h1>
+		<div>
+			<input type="text" name="title"
+			v-bind:placeholder = "titlestr"
+			v-on:input="inputChangeHandler">
+			<input type="text" name="date"
+			v-bind:placeholder = "datestr"
+			v-on:input="inputChangeHandler">
+			<input type="text" name="number"
+			v-bind:placeholder = "numberstr"
+			v-on:input="inputChangeHandler">
+			<input type="text" name="price"
+			v-bind:placeholder = "pricestr"
+			v-on:input="inputChangeHandler">
+		</div>
+		
+		<button class="btn" id="add" v-on:click = "addNewProduct">Добавить</button>
+		<hr / > 
+		<ul class="list" v-if='titles.length != 0 '>
+			<li class="list-item" 
+			v-for="(title,i) in titles"
+			v-for="date in dates"  
+			v-for="price in prices"   
+			v-for="number in numbers" >
+				{{ i+1 }}.{{ title }} -  {{ number }} шт. по {{ price }} тг
+				<br>Дата приема товара : {{ date }}
+				<button class="btn del" v-on:click = "removeProduct(i , $event)">удалить</button>
+			</li>
+			<li>
+				Сумма : {{ sum }} тг
+			</li>
+		</ul>
+		<div v-else id="ul-else">Вы не добавили ни один товар :)</div>
+	</div>
+	</div>
+
+
+<script src="https://unpkg.com/vue@3"></script>
+<script src="vuejs.js" ></script>
+
+</body>
